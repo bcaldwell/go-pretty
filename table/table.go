@@ -880,13 +880,15 @@ func (t *Table) shouldMergeCellsVertically(colIdx int, hint renderHint) bool {
 			rowPrev := t.getRow(hint.rowNumber-1, hint)
 			rowNext := t.getRow(hint.rowNumber, hint)
 			if colIdx < len(rowPrev) && colIdx < len(rowNext) {
-				return rowPrev[colIdx] == rowNext[colIdx] || "" == rowNext[colIdx]
+				// return rowPrev[colIdx] == rowNext[colIdx] || "" == rowNext[colIdx]
+				return rowPrev[colIdx] == rowNext[colIdx] || ("" == rowNext[colIdx] && !t.columnConfigMap[colIdx].DisableAutoMergeWithEmpty)
 			}
 		} else {
 			rowPrev := t.getRow(hint.rowNumber-2, hint)
 			rowCurr := t.getRow(hint.rowNumber-1, hint)
 			if colIdx < len(rowPrev) && colIdx < len(rowCurr) {
-				return rowPrev[colIdx] == rowCurr[colIdx] || "" == rowCurr[colIdx]
+				// return rowPrev[colIdx] == rowCurr[colIdx] || "" == rowCurr[colIdx]
+				return rowPrev[colIdx] == rowCurr[colIdx] || ("" == rowCurr[colIdx] && !t.columnConfigMap[colIdx].DisableAutoMergeWithEmpty)
 			}
 		}
 	}

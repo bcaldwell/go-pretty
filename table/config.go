@@ -33,6 +33,9 @@ type ColumnConfig struct {
 	// * Style().Color.Row == Style().Color.RowAlternate (or not set)
 	AutoMerge bool
 
+	// DisableAutoMergeWithEmpty disables merging with empty cells for automerge
+	DisableAutoMergeWithEmpty bool
+
 	// Colors defines the colors to be used on the column
 	Colors text.Colors
 	// ColorsFooter defines the colors to be used on the column in Footer rows
